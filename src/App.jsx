@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
-
+import Card from './components/Card'
+import cardContext from './contextApi/CardContext';
+import {Provider, useState} from "react"
 function App() {
-  const [count, setCount] = useState(0)
 
+const [dark,setDark]=useState("dark")
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div style={styles.container}>
+      <cardContext.Provider value={{dark,setDark}}>
+      <Card title={'Pant'} price={50}/>
+      <Card title={'Shirt'} price={500}/>
+      </cardContext.Provider>
+
+
+    </div>
   )
 }
 
-export default App
+export default App;
+const styles={
+  container:{
+    display:"flex",
+    justifyContent:"space-around",
+    margin:"4px"
+  }
+}
+
+
